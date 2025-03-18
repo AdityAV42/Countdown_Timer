@@ -1,2 +1,15 @@
-# Countdown_Timer
-This is a Javascript frontend project to create a countdown timer. Functionalities like :  option for users to reset the timer, choose the start and end date, notifications , emails, sound or notification when the timer expires, pause button, dynamic background.
+# Countdown Timer
+
+This is a JavaScript frontend project to create a countdown timer.
+
+## Functionalities  
+- Ensure every circle in the time div has the same dimension.  
+- Provide an option for users to reset the timer.  
+- Allow users to choose the start and end date.  
+- Send notifications and emails for:  
+  - **5 minutes left**  
+  - **1 minute left**  
+  - **Timer expired**  
+- Add sound or notification when the timer expires.  
+- Include a pause button.  
+- Implement a dynamic background.  
