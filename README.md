@@ -3,7 +3,6 @@
 This is a JavaScript frontend project to create a countdown timer.
 
 ## Functionalities  
-- Ensure every circle in the time div has the same dimension.  
 - Provide an option for users to reset the timer.  
 - Allow users to choose the start and end date.  
 - Send notifications and emails for:  
