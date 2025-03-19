@@ -41,11 +41,16 @@ h2{
     /* all div inside countdown */
     padding: 30px;
     background-color: rgb(231, 245, 206);
-    border-radius: 60px;
+    border-radius: 160px;
     color: rgb(108, 3, 59);
     display: flex;
     flex-direction: column;
     text-align: center;
+
+    width: 80px;       /* Fixed width */
+    height: 80px;      /* Fixed height */
+    justify-content: center;    /* Centers content vertically */
+    align-items: center;        /* Centers content horizontally */
 }
 
 span{
