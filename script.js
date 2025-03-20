@@ -1,5 +1,5 @@
-const endDate = new Date("18 Mar, 2026 20:00:00").getTime();    //future date ... convert to milli seconds .getTime()
-const startDate = new Date().getTime();                         //current date in milli sec
+let endDate = new Date("20 Mar, 2025 20:00:00").getTime();    //future date ... convert to milli seconds .getTime()
+let startDate = new Date().getTime();                         //current date in milli sec
 
 function updateTimer(){
     const now = new Date().getTime();            //currentDate
@@ -39,13 +39,12 @@ function updateTimer(){
     }
 }
 
-const x = setInterval(updateTimer, 1000);                 //1 sec = 1000ms
+let x = setInterval(updateTimer, 1000);                 //1 sec = 1000ms
 
 
-//i want every circle of time div to be of same dimension
-//give option to user to reset, 
-// give option to user to choose start , end date  
+
+
+
+
 // give notification, send mail to user that 5 min left, 1 min left , expired mail
 //Add Sound or Notification When Timer Expires
-//Add a Pause Button
-//Add a Dynamic Background

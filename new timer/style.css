@@ -1,0 +1,103 @@
+body{ 
+    background-color: rgba(160, 219, 72, 0.703); /* New background color */
+    color: rgba(41, 3, 112, 0.953); /* New text color */
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+} 
+
+.form-area, .counter, .complete{ 
+    width: fit-content; 
+    max-width: 650px;
+    margin: 0 auto; /* Center the divs */
+    background-color: rgba(252, 252, 252, 0.421); /* Semi-transparent white background */
+    padding: 20px;
+    border-radius: 25px; /* Rounded corners */
+    margin-top: 10%; /* Adjust as needed */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow */
+} 
+
+.form-area input {
+    display: block; 
+    margin: 15px; 
+    padding: 10px; 
+    margin-left: 0px;
+    margin-right: 0px;
+    width: 300px;
+}
+
+.form-area{
+    font-size: 14px;
+    font-weight: bold;
+}
+
+
+/* all buttons */
+button{ 
+    background-color: rgb(0, 0, 0); 
+    width: 100%; 
+    padding: 15px; 
+    border: none; 
+    color: white; 
+    font-weight: bold; 
+    font-size: 16px; 
+    border-radius: 5px; 
+} 
+
+button:hover{ 
+    background-color: rgba(0, 0, 0, 0.627); 
+    cursor: pointer;
+}
+
+button:active {
+    background-color: rgba(0, 0, 0, 0.627);
+    transform: scale(1.01);
+}
+
+
+.counter h1{
+    text-align: center;
+}
+
+li{ 
+    display: inline-block; 
+    font-size: 30px; 
+    list-style-type: none; 
+    padding: 10px; 
+    text-transform: uppercase; 
+    color: rgb(27, 27, 27); 
+} 
+
+li span{ 
+    display: block; 
+    font-size: 80px;
+    text-align: center;
+}
+
+
+.complete-title{
+    animation: complete 2s infinite;
+    text-align: center;
+}
+
+@keyframes complete { 
+    0%{ 
+        color: red; 
+    } 
+    25%{ 
+        color: yellow; 
+        transform: rotate(5deg); 
+    } 
+    50%{ 
+        color: green; 
+        transform: scale(1.2);
+    } 
+    75%{ 
+        color: blue; 
+        transform: rotate(-5deg); 
+    } 
+    100%{ 
+        color: red; 
+        transform: rotate(0deg);
+    }
+}
