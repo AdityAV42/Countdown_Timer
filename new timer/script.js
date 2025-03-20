@@ -33,10 +33,9 @@ let date = '';
 let startDate; // Add start date variable
 let endDate;   // Add end date variable
 
-let today = new Date().toISOString().split('T')[0];      //after split it becomes array , so access 1st part
-// console.log(today);
-datePicker.setAttribute('min', today)             //set miniumum date
-
+// Set minimum selectable date and time dynamically
+let now = new Date().toISOString().slice(0, 16); // Includes time up to minutes
+datePicker.setAttribute('min', now); // Set min attribute to current datetime
 
 function updateDom() {
     countdownActive = setInterval(() => {
@@ -56,10 +55,9 @@ function updateDom() {
         // Ensure percentage stays within 0-100%
         const progressPercentage = Math.min(Math.max(percentageDistance, 0), 100);
 
-        // ✅ Save the correct progress value as a string
+        // Save the correct progress value as a string
         localStorage.setItem('countdownProgress', progressPercentage.toFixed(2)); // Ensures 2 decimal places
         
-        // ✅ Apply it correctly
         progressBar.style.width = `${progressPercentage}%`;
 
         if (distance < 0) {
@@ -84,15 +82,13 @@ function updateDom() {
     }, 1000);
 }
 
-
-
 function updateCountdown(e){
     e.preventDefault();     
     title = e.srcElement[0].value;
     date = e.srcElement[1].value;
     
     if(date === ""){
-        alert('Please Enter a date!');
+        alert('Please Enter a date and time!');
         return;
     }
     
@@ -110,7 +106,6 @@ function updateCountdown(e){
     
     updateDom();
 }
-
 
 function reset(){
     localStorage.removeItem('countdown');
@@ -157,8 +152,6 @@ counterResetBtn.addEventListener('click', reset);
 completeBtn.addEventListener('click', reset);
 
 restoreCountdown();
-
-
 
 
 
