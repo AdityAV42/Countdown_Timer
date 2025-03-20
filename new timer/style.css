@@ -1,6 +1,11 @@
 body{ 
-    background-color: rgba(160, 219, 72, 0.703); /* New background color */
-    color: rgba(41, 3, 112, 0.953); /* New text color */
+    
+    background: rgb(121, 232, 69);
+    background: linear-gradient(90deg, rgba(78,165,209,1) 0%, rgb(243, 175, 223) 48%, rgb(254, 145, 91) 100%, rgb(146, 229, 245) 100%);
+
+    color: rgba(41, 3, 112, 0.953); 
+
+
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
     padding: 0;
@@ -34,7 +39,7 @@ body{
 
 /* all buttons */
 button{ 
-    background-color: rgb(46, 137, 55); 
+    background-color: rgb(37, 37, 37); 
     width: 100%; 
     padding: 15px; 
     border: none; 
@@ -45,12 +50,12 @@ button{
 } 
 
 button:hover{ 
-    background-color: rgba(46, 137, 55, 0.793); 
+    background-color: rgba(64, 64, 64, 0.793); 
     cursor: pointer;
 }
 
 button:active {
-    background-color: rgb(46, 137, 55);
+    background-color: rgba(64, 64, 64, 0.793);
     transform: scale(1.01);
 }
 
