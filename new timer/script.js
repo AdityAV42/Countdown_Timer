@@ -16,6 +16,8 @@ const complete = document.getElementById('complete');
 const completeInfo = document.getElementById('complete-info');
 const completeBtn = document.getElementById('complete-button');
 
+const progressBar = document.getElementById('progress-bar'); // Add progress bar reference
+
 let countdownValue = Date;          //date type variable
 let countdownActive;
 
@@ -27,6 +29,9 @@ const day = hour * 24;          //1d = 24h
 
 let title ='';
 let date = '';
+
+let startDate; // Add start date variable
+let endDate;   // Add end date variable
 
 let today = new Date().toISOString().split('T')[0];      //after split it becomes array , so access 1st part
 // console.log(today);
@@ -43,6 +48,20 @@ function updateDom() {
         const mins = Math.floor((distance % hour) / minute);
         const secs = Math.floor((distance % minute) / second);
 
+        // Calculate progress percentage correctly
+        const totalDistance = endDate - startDate;
+        const distanceCovered = now - startDate;
+        const percentageDistance = (distanceCovered / totalDistance) * 100;
+
+        // Ensure percentage stays within 0-100%
+        const progressPercentage = Math.min(Math.max(percentageDistance, 0), 100);
+
+        // ✅ Save the correct progress value as a string
+        localStorage.setItem('countdownProgress', progressPercentage.toFixed(2)); // Ensures 2 decimal places
+        
+        // ✅ Apply it correctly
+        progressBar.style.width = `${progressPercentage}%`;
+
         if (distance < 0) {
             counterEl.hidden = true;
             counterFormArea.hidden = true;
@@ -50,6 +69,8 @@ function updateDom() {
 
             clearInterval(countdownActive);
             completeInfo.textContent = `${title} completed on ${date}`;
+            progressBar.style.width = "100%"; 
+            localStorage.setItem('countdownProgress', "100"); 
         } else {
             daysEl.textContent = days;
             hoursEl.textContent = hours;
@@ -64,51 +85,67 @@ function updateDom() {
 }
 
 
+
 function updateCountdown(e){
-    e.preventDefault();     //page doesn't reload after submit button is clicked 
+    e.preventDefault();     
     title = e.srcElement[0].value;
     date = e.srcElement[1].value;
     
-    console.log(title, date);
-    // console.log(e);         //details of the form
-
-    const savedCountdown = {    //object
-        title : title,
-        date : date
-    };
-
-    localStorage.setItem('countdown', JSON.stringify(savedCountdown));          //key, value
-
     if(date === ""){
         alert('Please Enter a date!');
+        return;
     }
-    else{   
-        countdownValue = new Date(date).getTime();    
-        // console.log(countdownValue);
-        updateDom();
-    }
+    
+    startDate = new Date().getTime(); // Capture the start date only once
+    endDate = new Date(date).getTime();
+    countdownValue = endDate;    
+
+    const savedCountdown = {    
+        title: title,
+        date: date,
+        startDate: startDate  // Store start date in localStorage
+    };
+
+    localStorage.setItem('countdown', JSON.stringify(savedCountdown));
+    
+    updateDom();
 }
 
 
 function reset(){
     localStorage.removeItem('countdown');
+    localStorage.removeItem('countdownProgress'); // Remove progress from localStorage
     counterEl.hidden = true;
     complete.hidden = true; 
     clearInterval(countdownActive);
     title = '';
     date = '';
     counterFormArea.hidden = false;
+
+    // Reset progress bar
+    progressBar.style.width = "0%";
 }
 
-function restoreCountdown(){
-    if(localStorage.getItem('countdown')){      //check if key 'countdown' present 
+function restoreCountdown() {
+    const savedCountdownData = localStorage.getItem('countdown');
+    
+    if (savedCountdownData) {      
         counterFormArea.hidden = true;
         
-        let countdownData = JSON.parse(localStorage.getItem('countdown'));
+        let countdownData = JSON.parse(savedCountdownData);
         title = countdownData.title;
         date = countdownData.date;
+        startDate = countdownData.startDate; 
+        endDate = new Date(date).getTime(); 
+        countdownValue = endDate;    
 
-        countdownValue = new Date(date).getTime();    
+        const savedProgress = parseFloat(localStorage.getItem('countdownProgress'));
+        
+        if (!isNaN(savedProgress)) {
+            progressBar.style.width = savedProgress + "%"; // Apply correct progress
+            console.log(`Restored Progress Bar Width: ${progressBar.style.width}`);
+        }
+
         updateDom();
     }
 }
@@ -126,7 +163,6 @@ restoreCountdown();
 
 
 
- 
 //make calendar to have date and time both setting
 // give notification, send mail to user that 5 min left, 1 min left , expired mail
 //Add Sound or Notification When Timer Expires
