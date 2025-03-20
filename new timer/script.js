@@ -167,6 +167,7 @@ restoreCountdown();
 
 
 
-//make calendar to have date and time both setting
+
+//TO DO:
 // give notification, send mail to user that 5 min left, 1 min left , expired mail
 //Add Sound or Notification When Timer Expires
