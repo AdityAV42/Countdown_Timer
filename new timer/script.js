@@ -6,7 +6,11 @@ const counterEl = document.getElementById('counter');
 const counterTitleEl = document.getElementById('counter-title');      
 const counterResetBtn = document.getElementById('counter-reset');
 const datePicker = document.getElementById('counter-date');
-const timeElements = document.querySelectorAll('span');
+
+const daysEl = document.getElementById('days');
+const hoursEl = document.getElementById('hours');
+const minutesEl = document.getElementById('minutes');
+const secondsEl = document.getElementById('seconds');
 
 const complete = document.getElementById('complete');
 const completeInfo = document.getElementById('complete-info');
@@ -29,42 +33,34 @@ let today = new Date().toISOString().split('T')[0];      //after split it become
 datePicker.setAttribute('min', today)             //set miniumum date
 
 
-function updateDom(){
-   
-    countdownActive = setInterval(()=>{         //counter updates every 1 sec(1000ms)
-        let now = new Date().getTime();               //current time in ms
-        let distance = countdownValue - now;          //remaining distance
-        // console.log(distance);
-    
-        const days = Math.floor(distance/day);
-        const hours = Math.floor((distance%day)/hour);
-        const mins = Math.floor((distance%hour)/minute);
-        const secs = Math.floor((distance%minute)/second);
-        // console.log(days, hours, mins, secs);
-    
+function updateDom() {
+    countdownActive = setInterval(() => {
+        let now = new Date().getTime();
+        let distance = countdownValue - now;
 
-        if(distance < 0){
+        const days = Math.floor(distance / day);
+        const hours = Math.floor((distance % day) / hour);
+        const mins = Math.floor((distance % hour) / minute);
+        const secs = Math.floor((distance % minute) / second);
+
+        if (distance < 0) {
             counterEl.hidden = true;
-            counterFormArea.hidden = true
+            counterFormArea.hidden = true;
             complete.hidden = false;
 
             clearInterval(countdownActive);
             completeInfo.textContent = `${title} completed on ${date}`;
-        }
-        else{
-            timeElements[0].textContent = days;
-            timeElements[1].textContent = hours;
-            timeElements[2].textContent = mins;
-            timeElements[3].textContent = secs;
-    
+        } else {
+            daysEl.textContent = days;
+            hoursEl.textContent = hours;
+            minutesEl.textContent = mins;
+            secondsEl.textContent = secs;
+
             counterTitleEl.textContent = title;
-    
-            // counterEl.removeAttribute('hidden');
-            counterFormArea.hidden = true;              //hide 1st then unhide others
+            counterFormArea.hidden = true;
             counterEl.hidden = false;
         }
     }, 1000);
-
 }
 
 
