@@ -151,6 +151,17 @@ counterResetBtn.addEventListener('click', reset);
 
 completeBtn.addEventListener('click', reset);
 
+datePicker.addEventListener('input', () => {
+    let selectedDateTime = new Date(datePicker.value);
+    let now = new Date();
+
+    // Ensure the selected time is not in the past
+    if (selectedDateTime < now) {
+        alert("You cannot select a past time!");
+        datePicker.value = ""; // Reset the input field
+    }
+});
+
 restoreCountdown();
 
 
