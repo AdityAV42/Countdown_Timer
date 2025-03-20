@@ -1,21 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter</title>
     <link rel="stylesheet" href="style.css">
-    <title>Countdown Timer</title>
-  </head>
-  <body>
-    <div class="container">
-        <!-- 1. timer heading 
-                2. day, min, hour, sec ..... 4boxes
-                3. progress heading
-                4. progress bar 
-        -->
+</head>
+<body>
 
-        <h1>CountDown Timer</h1>
 
+    <!-- SCREEN 1 : countdown form -->
+    <div class="form-area" >
+        <form id="counter-form">
+            <div>
+                <label>Enter Countdown Title: </label>
+                <input type="text" name="title" id="counter-title-input" placeholder="What is it that you're counting to?">
+            </div>
+
+            <div>
+                <label>Pick a date: </label>
+                <!-- <input type="date" name="date-picker" id="counter-date"> -->
+                <input type="datetime-local" name="date-picker" id="counter-date">
+            </div>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+
+
+    <!-- SCREEN 2 : main counter , reset -->
+    <div class="counter" id="counter" hidden>
+
+        <h1 id="counter-title">Counter Title</h1>
+
+        <!-- Countdown Numbers -->
         <div id="countdown">
             <div>
                 <span id="days">00</span>
@@ -35,14 +54,23 @@
             </div>
         </div>
 
-        <h2>Progress . . . </h2>
+        <!-- Progress Bar -->
         <div class="progress-container">
             <div id="progress-bar"></div>
         </div>
-        
+        <button type="reset" id="counter-reset">Reset Timer</button>
+    </div>
+
+
+
+    <!-- SCREEN 3 :  completed window -->
+    <div class="complete" id="complete" hidden>
+        <h1 class="complete-title">Counter Completed!!!</h1>
+        <h1 id="complete-info">Countdown finished on 20-03-2025</h1>
+        <button id="complete-button">New Countdown</button>
     </div>
 
 
     <script src="script.js"></script>
-  </body>
-</html> -->
+</body>
+</html>
