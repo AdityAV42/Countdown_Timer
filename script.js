@@ -177,5 +177,6 @@ restoreCountdown();
 
 
 
-//TO DO:
-// send mail to user that 5 min left, 1 min left , expired mail-----> requires backend
+//TO DO after learning backend:
+// send mail to user that 5 min left, 1 min left , expired mail
+//              -----> requires backend knowledge
