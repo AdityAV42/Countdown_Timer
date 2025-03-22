@@ -15,8 +15,9 @@ const secondsEl = document.getElementById('seconds');
 const complete = document.getElementById('complete');
 const completeInfo = document.getElementById('complete-info');
 const completeBtn = document.getElementById('complete-button');
-
 const progressBar = document.getElementById('progress-bar'); // Add progress bar reference
+
+const timerSound = document.getElementById('timer-sound');
 
 let countdownValue = Date;          //date type variable
 let countdownActive;
@@ -69,7 +70,12 @@ function updateDom() {
             completeInfo.textContent = `${title} completed on ${date}`;
             progressBar.style.width = "100%"; 
             localStorage.setItem('countdownProgress', "100"); 
-        } else {
+
+            // Play the sound when the timer expires
+            timerSound.play(); 
+        } 
+        else 
+        {
             daysEl.textContent = days;
             hoursEl.textContent = hours;
             minutesEl.textContent = mins;
@@ -107,9 +113,9 @@ function updateCountdown(e){
     updateDom();
 }
 
-function reset(){
+function reset() {
     localStorage.removeItem('countdown');
-    localStorage.removeItem('countdownProgress'); // Remove progress from localStorage
+    localStorage.removeItem('countdownProgress');
     counterEl.hidden = true;
     complete.hidden = true; 
     clearInterval(countdownActive);
@@ -117,9 +123,13 @@ function reset(){
     date = '';
     counterFormArea.hidden = false;
 
-    // Reset progress bar
     progressBar.style.width = "0%";
+
+    // Stop and reset the sound
+    timerSound.pause(); // Stop the sound
+    timerSound.currentTime = 0; // Reset the sound to the beginning
 }
+
 
 function restoreCountdown() {
     const savedCountdownData = localStorage.getItem('countdown');
@@ -170,4 +180,4 @@ restoreCountdown();
 
 //TO DO:
 // give notification, send mail to user that 5 min left, 1 min left , expired mail
-//Add Sound or Notification When Timer Expires
+//  Notification When Timer Expires
