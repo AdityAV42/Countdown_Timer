@@ -88,6 +88,7 @@ function updateDom() {
     }, 1000);
 }
 
+
 function updateCountdown(e){
     e.preventDefault();     
     title = e.srcElement[0].value;
@@ -176,8 +177,5 @@ restoreCountdown();
 
 
 
-
-
 //TO DO:
-// give notification, send mail to user that 5 min left, 1 min left , expired mail
-//  Notification When Timer Expires
+// send mail to user that 5 min left, 1 min left , expired mail-----> requires backend
